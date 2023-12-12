@@ -1,0 +1,146 @@
+2023-11-23 17:02:23,687;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:02:23,687;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:02:23,769;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:02:23,775;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:03:12,057;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:03:12,058;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:03:40,571;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:03:40,571;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:03:45,819;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:03:45,819;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:04:30,008;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:04:30,009;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:05:18,991;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:05:18,992;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:05:25,820;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:05:25,821;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:06:22,359;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:06:22,359;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:06:56,091;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:06:56,091;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:07:02,186;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:07:02,187;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:07:28,395;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:07:28,395;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:07:42,955;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:07:42,955;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:07:48,451;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:07:48,452;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:07:48,497;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:07:48,497;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:08:14,710;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:08:14,710;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:08:26,530;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:08:26,530;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:08:51,961;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:08:51,961;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:08:52,010;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:08:52,011;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:14:54,531;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:14:54,531;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:15:01,312;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:15:01,313;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:15:17,336;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:15:17,336;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:15:17,382;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:15:17,383;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:17:19,192;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:17:19,192;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:19:40,298;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:19:40,299;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:21:39,980;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:21:39,980;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:21:56,785;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:21:56,786;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:22:07,167;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:22:07,168;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:22:18,004;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:22:18,005;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:22:25,735;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:22:25,735;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:23:22,022;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:23:22,023;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:49:28,901;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:49:28,901;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:49:28,979;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:49:28,980;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:49:55,562;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:49:55,562;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:50:00,299;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:50:00,299;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:50:09,086;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:50:09,087;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:50:27,793;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:50:27,793;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:51:26,537;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:51:26,538;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:52:03,395;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:52:03,395;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:52:24,327;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:52:24,327;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:52:30,067;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:52:30,068;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:52:58,040;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:52:58,040;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:52:58,091;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:52:58,091;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:53:33,116;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:53:33,116;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:53:33,173;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 17:53:33,173;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 17:53:35,815;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:53:35,815;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:56:08,088;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:56:08,088;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:56:42,037;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:56:42,038;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:57:14,577;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:57:14,578;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 17:58:59,245;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 17:58:59,246;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 18:01:49,960;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 18:01:49,960;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 18:03:16,355;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 18:03:16,356;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 18:05:18,964;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 18:05:18,965;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 18:06:06,063;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 18:06:06,064;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 18:07:16,182;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 18:07:16,182;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 18:07:20,433;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 18:07:20,433;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 18:07:21,866;INFO;MainThread;managers.py;managers;validate;(637);Manager default validating
+2023-11-23 18:07:21,866;INFO;MainThread;managers.py;managers;validate;(644);Manager default validated
+2023-11-23 18:07:21,871;INFO;MainThread;manager_upload.py;manager_upload;validate;(129);Manager upload validating
+2023-11-23 18:07:21,871;INFO;MainThread;manager_upload.py;manager_upload;validate;(136);Manager upload validated
+2023-11-23 18:07:21,875;INFO;MainThread;item_manager.py;item_manager;validate;(130);Manager validating
+2023-11-23 18:07:21,875;INFO;MainThread;item_manager.py;item_manager;validate;(138);Manager validated
+2023-11-23 18:07:21,876;INFO;MainThread;endpoint_storage.py;endpoint_storage;validate;(360);HandlerEndpointStorage validating
+2023-11-23 18:07:21,876;INFO;MainThread;endpoint_storage.py;endpoint_storage;validate;(369);HandlerEndpointStorage validated
+2023-11-23 18:07:22,115;INFO;MainThread;storage.py;storage;validate;(171);MongoStorage validating
+2023-11-23 18:07:22,123;INFO;MainThread;storage.py;storage;validate;(186);MongoStorage validated
+2023-11-23 18:07:22,126;INFO;MainThread;item_manager.py;item_manager;load_item;(120);add item test
+2023-11-23 18:07:22,126;INFO;MainThread;managers.py;managers;create_proxy_manager;(623);create proxy test
+2023-11-23 18:07:22,127;INFO;MainThread;managers.py;managers;validate;(540);ProxyManager test validating
+2023-11-23 18:07:22,127;INFO;MainThread;managers.py;managers;validate;(548);ProxyManager test validated
+2023-11-23 18:07:22,128;INFO;MainThread;managers.py;managers;create_proxy_manager;(627);end create proxy test
+2023-11-23 18:07:33,169;INFO;MainThread;proxy.py;proxy;validate;(48);serverProxy validating
+2023-11-23 18:07:33,170;INFO;MainThread;proxy.py;proxy;validate;(50);serverProxy validated
+2023-11-23 18:07:33,219;INFO;MainThread;endpoints.py;endpoints;validate;(235);Endpoint validating
+2023-11-23 18:07:33,219;INFO;MainThread;endpoints.py;endpoints;validate;(244);Endpoint validated
+2023-11-23 18:07:33,225;INFO;MainThread;managers.py;managers;validate;(637);Manager default validating
+2023-11-23 18:07:33,225;INFO;MainThread;managers.py;managers;validate;(644);Manager default validated
+2023-11-23 18:07:33,227;INFO;MainThread;manager_upload.py;manager_upload;validate;(129);Manager upload validating
+2023-11-23 18:07:33,227;INFO;MainThread;manager_upload.py;manager_upload;validate;(136);Manager upload validated
+2023-11-23 18:07:33,229;INFO;MainThread;item_manager.py;item_manager;validate;(130);Manager validating
+2023-11-23 18:07:33,229;INFO;MainThread;item_manager.py;item_manager;validate;(138);Manager validated
+2023-11-23 18:07:33,229;INFO;MainThread;endpoint_storage.py;endpoint_storage;validate;(360);HandlerEndpointStorage validating
+2023-11-23 18:07:33,230;INFO;MainThread;endpoint_storage.py;endpoint_storage;validate;(369);HandlerEndpointStorage validated
+2023-11-23 18:07:33,383;INFO;MainThread;storage.py;storage;validate;(171);MongoStorage validating
+2023-11-23 18:07:33,387;INFO;MainThread;storage.py;storage;validate;(186);MongoStorage validated
+2023-11-23 18:07:33,390;INFO;MainThread;item_manager.py;item_manager;load_item;(120);add item test
+2023-11-23 18:07:33,390;INFO;MainThread;managers.py;managers;create_proxy_manager;(623);create proxy test
+2023-11-23 18:07:33,390;INFO;MainThread;managers.py;managers;validate;(540);ProxyManager test validating
+2023-11-23 18:07:33,390;INFO;MainThread;managers.py;managers;validate;(548);ProxyManager test validated
+2023-11-23 18:07:33,390;INFO;MainThread;managers.py;managers;create_proxy_manager;(627);end create proxy test
