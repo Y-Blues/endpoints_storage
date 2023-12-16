@@ -1,8 +1,12 @@
-#app="all"
+"""
+    handle endpoint that manage call of storage from endpoint.
+
+    if allow to call the correct entityManager
+
+"""
+
 import ycappuccino_core
-from ycappuccino_core.api import IActivityLogger
-from ycappuccino_endpoints.api import IHandlerEndpoint
-from ycappuccino_storage.api import IManager, IItemManager
+from ycappuccino_api.core.api import IActivityLogger
 from ycappuccino_core.decorator_app import Layer
 
 import uuid
@@ -12,11 +16,11 @@ from ycappuccino_endpoints.beans import UrlPath, EndpointResponse
 from pelix.ipopo.decorators import ComponentFactory, Requires, Validate, Invalidate, Provides, BindField, UnbindField, Instantiate
 
 
-from ycappuccino_endpoints.api import IEndpoint
+from ycappuccino_api.endpoints.api import IEndpoint
 
 from ycappuccino_endpoints.bundles.utils_header import check_header, get_token_decoded, get_token_from_header
-from ycappuccino_endpoints.api import IRightManager,  IHandlerEndpoint
-from ycappuccino_storage.api import IManager,  IItemManager
+from ycappuccino_api.endpoints.api import IRightManager,  IHandlerEndpoint
+from ycappuccino_api.storage.api import IManager,  IItemManager
 
 _logger = logging.getLogger(__name__)
 
