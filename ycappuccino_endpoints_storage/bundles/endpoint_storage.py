@@ -7,6 +7,7 @@
 
 import ycappuccino_core
 from ycappuccino_api.core.api import IActivityLogger
+from ycappuccino_api.proxy.api import YCappuccinoRemote
 from ycappuccino_core.decorator_app import Layer
 
 import uuid
@@ -26,14 +27,14 @@ _logger = logging.getLogger(__name__)
 
 
 @ComponentFactory('EndpointStorage-Factory')
-@Provides(specifications=[IHandlerEndpoint.name])
-@Requires("_log",IActivityLogger.name, spec_filter="'(name=main)'")
+@Provides(specifications=[YCappuccinoRemote.__name__, IHandlerEndpoint.__name__])
+@Requires("_log",IActivityLogger.__name__, spec_filter="'(name=main)'")
 @Instantiate("handlerEndpointStorage")
-@Requires("_handler_swagger", specification=IHandlerEndpoint.name, spec_filter="'(name=swagger)'")
-@Requires("_item_manager", specification=IItemManager.name)
-@Requires("_managers", specification=IManager.name, aggregate=True, optional=True)
-@Requires("_endpoint", specification=IEndpoint.name)
-@Requires("_right_access", specification=IRightManager.name, optional=True)
+@Requires("_handler_swagger", specification=IHandlerEndpoint.__name__, spec_filter="'(name=swagger)'")
+@Requires("_item_manager", specification=IItemManager.__name__)
+@Requires("_managers", specification=IManager.__name__, aggregate=True, optional=True)
+@Requires("_endpoint", specification=IEndpoint.__name__)
+@Requires("_right_access", specification=IRightManager.__name__, optional=True)
 @Layer(name="ycappuccino_endpoints_storage")
 class HandlerEndpointStorage(IHandlerEndpoint):
 
