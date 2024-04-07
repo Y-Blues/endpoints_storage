@@ -1,5 +1,5 @@
 """
-    handle endpoint that manage call of storage from endpoint.
+    handle endpoint that manage call of repositories from endpoint.
 
     if allow to call the correct entityManager
 
@@ -7,30 +7,47 @@
 
 import ycappuccino_core
 from ycappuccino_api.core.api import IActivityLogger
-from ycappuccino_api.proxy.api import YCappuccinoRemote
-from ycappuccino_core.decorator_app import Layer
+from src.main.python.proxy import YCappuccinoRemote
+from src.main.python.decorator_app import Layer
 
 import uuid
 import os
 import logging
-from ycappuccino_endpoints.beans import UrlPath, EndpointResponse
-from pelix.ipopo.decorators import ComponentFactory, Requires, Validate, Invalidate, Provides, BindField, UnbindField, Instantiate
+from src.main.python.beans import UrlPath, EndpointResponse
+from pelix.ipopo.decorators import (
+    ComponentFactory,
+    Requires,
+    Validate,
+    Invalidate,
+    Provides,
+    BindField,
+    UnbindField,
+    Instantiate,
+)
 
 
 from ycappuccino_api.endpoints.api import IEndpoint
 
-from ycappuccino_endpoints.bundles.utils_header import check_header, get_token_decoded, get_token_from_header
-from ycappuccino_api.endpoints.api import IRightManager,  IHandlerEndpoint
-from ycappuccino_api.storage.api import IManager,  IItemManager
+from src.main.python.bundles import (
+    check_header,
+    get_token_decoded,
+    get_token_from_header,
+)
+from ycappuccino_api.endpoints.api import IRightManager, IHandlerEndpoint
+from ycappuccino_api.storage.api import IManager, IItemManager
 
 _logger = logging.getLogger(__name__)
 
 
-@ComponentFactory('EndpointStorage-Factory')
+@ComponentFactory("EndpointStorage-Factory")
 @Provides(specifications=[YCappuccinoRemote.__name__, IHandlerEndpoint.__name__])
-@Requires("_log",IActivityLogger.__name__, spec_filter="'(name=main)'")
+@Requires("_log", IActivityLogger.__name__, spec_filter="'(name=main)'")
 @Instantiate("handlerEndpointStorage")
-@Requires("_handler_swagger", specification=IHandlerEndpoint.__name__, spec_filter="'(name=swagger)'")
+@Requires(
+    "_handler_swagger",
+    specification=IHandlerEndpoint.__name__,
+    spec_filter="'(name=swagger)'",
+)
 @Requires("_item_manager", specification=IItemManager.__name__)
 @Requires("_managers", specification=IManager.__name__, aggregate=True, optional=True)
 @Requires("_endpoint", specification=IEndpoint.__name__)
@@ -39,7 +56,7 @@ _logger = logging.getLogger(__name__)
 class HandlerEndpointStorage(IHandlerEndpoint):
 
     def __init__(self):
-        super(IHandlerEndpoint, self).__init__();
+        super(IHandlerEndpoint, self).__init__()
         self._log = None
         self._managers = None
         self._endpoint = None
@@ -50,18 +67,18 @@ class HandlerEndpointStorage(IHandlerEndpoint):
         self._handler_swagger = None
 
     def get_types(self):
-        return ["crud","schema","empty"]
+        return ["endpoint_crud", "schema", "empty"]
 
     def find_manager(self, a_item_plural_id):
         if a_item_plural_id in self._map_managers:
-             return self._map_managers[a_item_plural_id]
+            return self._map_managers[a_item_plural_id]
         return None
 
     def check_header(self, a_headers):
         if "authorization" in a_headers:
             w_authorization = a_headers["authorization"]
             if w_authorization is not None and "Bearer" in w_authorization:
-                w_token = w_authorization[len("Bearer "):]
+                w_token = w_authorization[len("Bearer ") :]
                 return self._right_access.verify(w_token)
             else:
                 return False
@@ -83,7 +100,7 @@ class HandlerEndpointStorage(IHandlerEndpoint):
         if "authorization" in a_headers:
             w_authorization = a_headers["authorization"]
             if w_authorization is not None and "Bearer" in w_authorization:
-                w_token = w_authorization[len("Bearer "):]
+                w_token = w_authorization[len("Bearer ") :]
         elif "Cookie" in a_headers:
             w_cookies = a_headers["Cookie"]
             if ";" in w_cookies:
@@ -96,8 +113,8 @@ class HandlerEndpointStorage(IHandlerEndpoint):
 
         return w_token
 
-    def upload_media(self, a_path, a_headers,  a_content):
-        w_url_path = UrlPath("put",a_path, self._endpoint.get_swagger_descriptions())
+    def upload_media(self, a_path, a_headers, a_content):
+        w_url_path = UrlPath("put", a_path, self._endpoint.get_swagger_descriptions())
         if w_url_path.is_crud():
             w_item_plural = w_url_path.get_item_plural_id()
             w_manager = self.find_manager(w_item_plural)
@@ -119,22 +136,22 @@ class HandlerEndpointStorage(IHandlerEndpoint):
 
                 # create file in data
                 w_filename = "test"
-                w_path = self._file_dir+"/"+w_filename;
-                with open(w_path,"w") as f:
+                w_path = self._file_dir + "/" + w_filename
+                with open(w_path, "w") as f:
                     f.write(a_content)
 
-                w_instance = w_manager.get_aggregate_one(w_item["id"], w_id, get_token_decoded(self._right_access, a_headers))
+                w_instance = w_manager.get_aggregate_one(
+                    w_item["id"], w_id, get_token_decoded(self._right_access, a_headers)
+                )
                 w_instance[w_item["multipart"]] = w_path
                 w_manager.up_sert(w_item["id"], w_id, w_instance.__dict__)
-                w_meta = {
-                    "type": "object"
-                }
+                w_meta = {"type": "object"}
                 return EndpointResponse(201, None, w_meta, {"id": w_id})
             else:
                 return EndpointResponse(405)
 
-    def post(self,a_path, a_headers, a_body):
-        w_url_path = UrlPath("post",a_path, self._endpoint.get_swagger_descriptions())
+    def post(self, a_path, a_headers, a_body):
+        w_url_path = UrlPath("post", a_path, self._endpoint.get_swagger_descriptions())
         if w_url_path.is_crud():
             w_item_plural = w_url_path.get_item_plural_id()
             w_manager = self.find_manager(w_item_plural)
@@ -158,11 +175,14 @@ class HandlerEndpointStorage(IHandlerEndpoint):
                 if w_url_path.is_draft():
                     # concat the draft id
                     w_id = w_id + "_" + w_url_path.get_draft()
-                w_manager.up_sert(w_item["id"], w_id, a_body, get_token_decoded(self._right_access, a_headers))
-                w_meta = {
-                    "type": "array"
-                }
-                return EndpointResponse(201, None, w_meta, {"id":w_id})
+                w_manager.up_sert(
+                    w_item["id"],
+                    w_id,
+                    a_body,
+                    get_token_decoded(self._right_access, a_headers),
+                )
+                w_meta = {"type": "array"}
+                return EndpointResponse(201, None, w_meta, {"id": w_id})
             else:
                 return EndpointResponse(405)
         elif w_url_path.is_schema():
@@ -171,7 +191,7 @@ class HandlerEndpointStorage(IHandlerEndpoint):
         return EndpointResponse(400)
 
     def put(self, a_path, a_headers, a_body):
-        w_url_path = UrlPath("put",a_path, self._endpoint.get_swagger_descriptions())
+        w_url_path = UrlPath("put", a_path, self._endpoint.get_swagger_descriptions())
         if w_url_path.is_crud():
             w_item_plural = w_url_path.get_item_plural_id()
             w_manager = self.find_manager(w_item_plural)
@@ -189,17 +209,22 @@ class HandlerEndpointStorage(IHandlerEndpoint):
                         self._log.info("failed authorization service ")
                         return EndpointResponse(403)
 
-                if w_url_path.get_params() is not None and w_url_path.get_params()["id"] is not None:
+                if (
+                    w_url_path.get_params() is not None
+                    and w_url_path.get_params()["id"] is not None
+                ):
                     w_id = w_url_path.get_params()["id"]
                     if w_url_path.is_draft():
                         # concat the draft id
                         w_id = w_id + "_" + w_url_path.get_draft()
-                    w_manager.up_sert(w_item["id"], w_id, a_body, get_token_decoded(self._right_access, a_headers))
-                    w_meta = {
-                        "type": "array",
-                        "size": 1
-                    }
-                    return EndpointResponse(200, None, w_meta, {"id":w_id})
+                    w_manager.up_sert(
+                        w_item["id"],
+                        w_id,
+                        a_body,
+                        get_token_decoded(self._right_access, a_headers),
+                    )
+                    w_meta = {"type": "array", "size": 1}
+                    return EndpointResponse(200, None, w_meta, {"id": w_id})
             else:
                 return EndpointResponse(405)
         elif w_url_path.is_schema():
@@ -212,17 +237,21 @@ class HandlerEndpointStorage(IHandlerEndpoint):
         self._handler_swagger.get_swagger_description_item(a_swagger["paths"])
         for w_item in ycappuccino_core.models.decorators.get_map_items():
             if not w_item["abstract"]:
-                self._handler_swagger.get_swagger_description(w_item, a_swagger["paths"])
-                a_tag.append({"name": self._handler_swagger.get_swagger_description_tag(w_item)})
+                self._handler_swagger.get_swagger_description(
+                    w_item, a_swagger["paths"]
+                )
+                a_tag.append(
+                    {"name": self._handler_swagger.get_swagger_description_tag(w_item)}
+                )
 
         return EndpointResponse(200, None, None, a_swagger)
 
     def get(self, a_path, a_headers):
-        w_url_path = UrlPath("get",a_path, self._endpoint.get_swagger_descriptions())
+        w_url_path = UrlPath("get", a_path, self._endpoint.get_swagger_descriptions())
         if w_url_path.is_crud():
             w_item_plural = w_url_path.get_item_plural_id()
             if w_item_plural == "items":
-                w_manager =  self._item_manager
+                w_manager = self._item_manager
             else:
                 w_manager = self.find_manager(w_item_plural)
             if w_manager is not None:
@@ -237,38 +266,47 @@ class HandlerEndpointStorage(IHandlerEndpoint):
                         self._log.info("failed authorization service ")
                         return EndpointResponse(403)
 
-                if w_url_path.get_params() is not None and "id" in w_url_path.get_params():
+                if (
+                    w_url_path.get_params() is not None
+                    and "id" in w_url_path.get_params()
+                ):
                     w_id = w_url_path.get_params()["id"]
                     if w_url_path.is_draft():
                         # concat the draft id
                         w_id = w_id + "_" + w_url_path.get_draft()
-                    w_resp = w_manager.get_one(w_item["id"], w_id, w_url_path.get_params())
+                    w_resp = w_manager.get_one(
+                        w_item["id"], w_id, w_url_path.get_params()
+                    )
                     if w_resp is None:
-                        w_resp = w_manager.get_one(w_item["id"], w_url_path.get_params()["id"], w_url_path.get_params())
-                    w_meta = {
-                        "type": "object",
-                        "size": 1
-                    }
+                        w_resp = w_manager.get_one(
+                            w_item["id"],
+                            w_url_path.get_params()["id"],
+                            w_url_path.get_params(),
+                        )
+                    w_meta = {"type": "object", "size": 1}
                 else:
 
-                    w_resp_temp = w_manager.get_aggregate_many(w_item["id"],w_url_path.get_params(), get_token_decoded(self._right_access, a_headers))
+                    w_resp_temp = w_manager.get_aggregate_many(
+                        w_item["id"],
+                        w_url_path.get_params(),
+                        get_token_decoded(self._right_access, a_headers),
+                    )
                     w_resp = []
                     if w_url_path.is_draft():
                         # check if duplicate element with draft exists and only keep the draft one
-                        w_draft =  w_url_path.get_draft()
+                        w_draft = w_url_path.get_draft()
                         w_to_removes = []
                         for w_elem in w_resp_temp:
                             if w_draft in w_elem["_id"]:
-                                w_to_removes.append(w_elem["_id"][0:-len(w_draft)+1])
+                                w_to_removes.append(
+                                    w_elem["_id"][0 : -len(w_draft) + 1]
+                                )
                         for w_elem in w_resp:
                             if w_elem["_id"] not in w_to_removes:
                                 w_resp.append(w_elem)
                     else:
                         w_resp = w_resp_temp
-                    w_meta = {
-                        "type": "array",
-                        "size": len(w_resp)
-                    }
+                    w_meta = {"type": "array", "size": len(w_resp)}
                 return EndpointResponse(200, None, w_meta, w_resp)
             else:
                 return EndpointResponse(405)
@@ -280,10 +318,7 @@ class HandlerEndpointStorage(IHandlerEndpoint):
                 w_item = w_manager.get_item_from_id_plural(w_item_plural)
 
                 w_resp = w_manager.get_schema(w_item["id"])
-                w_meta = {
-                    "type": "object",
-                    "size": 1
-                }
+                w_meta = {"type": "object", "size": 1}
                 return EndpointResponse(200, None, w_meta, w_resp)
         elif w_url_path.is_multipart():
             w_item_plural = w_url_path.get_item_plural_id()
@@ -292,13 +327,8 @@ class HandlerEndpointStorage(IHandlerEndpoint):
             if w_manager is not None:
                 w_item = w_manager.get_item_from_id_plural(w_item_plural)
 
-                w_resp = {
-                    "is_multipart" : w_item["multipart"] is not None
-                }
-                w_meta = {
-                    "type": "object",
-                    "size": 1
-                }
+                w_resp = {"is_multipart": w_item["multipart"] is not None}
+                w_meta = {"type": "object", "size": 1}
                 return EndpointResponse(200, None, w_meta, w_resp)
 
         elif w_url_path.is_empty():
@@ -308,16 +338,15 @@ class HandlerEndpointStorage(IHandlerEndpoint):
                 w_item = w_manager.get_item_from_id_plural(w_item_plural)
 
                 w_resp = w_manager.get_empty(w_item["id"])
-                w_meta = {
-                    "type": "object",
-                    "size": 1
-                }
+                w_meta = {"type": "object", "size": 1}
                 return EndpointResponse(200, None, w_meta, w_resp)
             return EndpointResponse(501)
         return EndpointResponse(400)
 
     def delete(self, a_path, a_headers):
-        w_url_path = UrlPath("delete",a_path, self._endpoint.get_swagger_descriptions())
+        w_url_path = UrlPath(
+            "delete", a_path, self._endpoint.get_swagger_descriptions()
+        )
         if w_url_path.is_crud():
             w_item_plural = w_url_path.get_item_plural_id()
             w_manager = self.find_manager(w_item_plural)
@@ -331,12 +360,16 @@ class HandlerEndpointStorage(IHandlerEndpoint):
                     if not self._right_access.is_authorized(w_token, w_url_path):
                         self._log.info("failed authorization service ")
                         return EndpointResponse(403)
-                w_meta = {
-                    "type": "array",
-                    "size": 1
-                }
-                if w_url_path.get_params() is not None and w_url_path.get_params().id is not None:
-                    w_manager.delete(w_item["id"], w_url_path.get_params().id, get_token_decoded(self._right_access, a_headers))
+                w_meta = {"type": "array", "size": 1}
+                if (
+                    w_url_path.get_params() is not None
+                    and w_url_path.get_params().id is not None
+                ):
+                    w_manager.delete(
+                        w_item["id"],
+                        w_url_path.get_params().id,
+                        get_token_decoded(self._right_access, a_headers),
+                    )
                     return EndpointResponse(200, None, w_meta)
             else:
                 return EndpointResponse(405)

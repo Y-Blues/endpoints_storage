@@ -1,7 +1,6 @@
-from ycappuccino_core.models.decorators  import Item, Property,  Reference, ItemReference, Empty
-from ycappuccino_storage.models.model import Model
-from ycappuccino_core.decorator_app import App
-
+from src.main.python.models.decorators import Item, Property, Reference, Empty
+from ycappuccino_storage import Model
+from src.main.python.decorator_app import App
 
 
 @Empty()
@@ -11,10 +10,14 @@ def empty():
 
     return _empty
 
+
 @App(name="test")
-@Item(collection="tests" ,name="test", plural="tests",  secure_write=True, secure_read=True)
+@Item(
+    collection="tests", name="test", plural="tests", secure_write=True, secure_read=True
+)
 class Test(Model):
-    """ describe an account in the application """
+    """describe an account in the application"""
+
     def __init__(self, a_dict=None):
         super().__init__(a_dict)
         self._login = None
@@ -32,5 +35,6 @@ class Test(Model):
     @Reference(name="role")
     def role(self, a_value):
         self._role = a_value
+
 
 empty()

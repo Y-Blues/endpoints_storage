@@ -12,6 +12,6 @@ layers:
     scheme: http
   ycappuccino_service_comm_storage:
     active: true
-name: endpoints_storage
+name: endpoint_crud
 bundle_prefix: ycappuccino
 
