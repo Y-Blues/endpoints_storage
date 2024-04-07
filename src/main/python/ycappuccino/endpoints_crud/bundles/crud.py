@@ -5,15 +5,9 @@
 
 """
 
-import ycappuccino_core
-from ycappuccino_api.core.api import IActivityLogger
-from src.main.python.proxy import YCappuccinoRemote
-from src.main.python.decorator_app import Layer
-
 import uuid
 import os
 import logging
-from src.main.python.beans import UrlPath, EndpointResponse
 from pelix.ipopo.decorators import (
     ComponentFactory,
     Requires,
@@ -25,16 +19,12 @@ from pelix.ipopo.decorators import (
     Instantiate,
 )
 
-
-from ycappuccino_api.endpoints.api import IEndpoint
-
-from src.main.python.bundles import (
-    check_header,
-    get_token_decoded,
-    get_token_from_header,
-)
-from ycappuccino_api.endpoints.api import IRightManager, IHandlerEndpoint
-from ycappuccino_api.storage.api import IManager, IItemManager
+from ycappuccino.api.core import IActivityLogger
+from ycappuccino.api.endpoints.api import IHandlerEndpoint, IEndpoint, IRightManager
+from ycappuccino.api.proxy.api import YCappuccinoRemote
+from ycappuccino.api.storage import IItemManager, IManager
+from ycappuccino.core.decorator_app import Layer
+from http.beans import UrlPath
 
 _logger = logging.getLogger(__name__)
 
