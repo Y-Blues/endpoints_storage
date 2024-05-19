@@ -6,7 +6,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="http" />
+    <orderEntry type="module" module-name="http_server" />
     <orderEntry type="module" module-name="repositories" />
     <orderEntry type="module" module-name="core" />
     <orderEntry type="module" module-name="api" />

@@ -5,9 +5,20 @@
 
 """
 
+<<<<<<<< HEAD:src/main/python/ycappuccino/endpoints_crud/bundles/crud.py
 import uuid
 import os
 import logging
+========
+from ycappuccino.api.core.api import IActivityLogger
+from ycappuccino.api.proxy.api import YCappuccinoRemote
+from ycappuccino.core.decorator_app import Layer
+import ycappuccino.core
+import uuid
+import os
+import logging
+from ycappuccino.endpoints.beans import UrlPath, EndpointResponse
+>>>>>>>> 126f6fc32c05adc08c03a371232160fd619e2122:src/main/python/ycappuccino/endpoints_storage/bundles/crud.py
 from pelix.ipopo.decorators import (
     ComponentFactory,
     Requires,
@@ -19,12 +30,25 @@ from pelix.ipopo.decorators import (
     Instantiate,
 )
 
+<<<<<<<< HEAD:src/main/python/ycappuccino/endpoints_crud/bundles/crud.py
 from ycappuccino.api.core import IActivityLogger
 from ycappuccino.api.endpoints.api import IHandlerEndpoint, IEndpoint, IRightManager
 from ycappuccino.api.proxy.api import YCappuccinoRemote
 from ycappuccino.api.storage import IItemManager, IManager
 from ycappuccino.core.decorator_app import Layer
 from http.beans import UrlPath
+========
+
+from ycappuccino.api.endpoints.api import IEndpoint
+
+from ycappuccino.endpoints.bundles.utils_header import (
+    check_header,
+    get_token_decoded,
+    get_token_from_header,
+)
+from ycappuccino.api.endpoints.api import IRightManager, IHandlerEndpoint
+from ycappuccino.api.storage.api import IManager, IItemManager
+>>>>>>>> 126f6fc32c05adc08c03a371232160fd619e2122:src/main/python/ycappuccino/endpoints_storage/bundles/crud.py
 
 _logger = logging.getLogger(__name__)
 
@@ -225,7 +249,7 @@ class HandlerEndpointStorage(IHandlerEndpoint):
     def get_swagger_descriptions(self, a_tag, a_swagger, a_scheme):
 
         self._handler_swagger.get_swagger_description_item(a_swagger["paths"])
-        for w_item in ycappuccino_core.models.decorators.get_map_items():
+        for w_item in ycappuccino.core.models.decorators.get_map_items():
             if not w_item["abstract"]:
                 self._handler_swagger.get_swagger_description(
                     w_item, a_swagger["paths"]
@@ -371,7 +395,7 @@ class HandlerEndpointStorage(IHandlerEndpoint):
     @BindField("_managers")
     def bind_manager(self, field, a_manager, a_service_reference):
         w_item_id = a_manager._item_id
-        w_item = ycappuccino_core.models.decorators.get_item(w_item_id)
+        w_item = ycappuccino.core.models.decorators.get_item(w_item_id)
         if w_item is not None:
             w_item_plural = w_item["plural"]
             self._map_managers[w_item_plural] = a_manager
@@ -379,7 +403,7 @@ class HandlerEndpointStorage(IHandlerEndpoint):
     @UnbindField("_managers")
     def unbind_manager(self, field, a_manager, a_service_reference):
         w_item_id = a_manager._item_id
-        w_item = ycappuccino_core.models.decorators.get_item(w_item_id)
+        w_item = ycappuccino.core.models.decorators.get_item(w_item_id)
         if w_item is not None:
             w_item_plural = w_item["plural"]
             self._map_managers[w_item_plural] = None
