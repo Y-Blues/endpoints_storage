@@ -8,6 +8,8 @@
 import uuid
 import os
 import logging
+
+from ycappuccino.api.decorators import get_map_items, get_item
 from ycappuccino.api.endpoints import EndpointResponse
 from pelix.ipopo.decorators import (
     ComponentFactory,
@@ -32,7 +34,7 @@ from ycappuccino.api.endpoints import (
 )
 from ycappuccino.api.endpoints import IRightManager, IHandlerEndpoint
 from ycappuccino.api.storage import IManager, IItemManager
-from ycappuccino.core.models.decorators import get_map_items, get_item
+from ycappuccino.core.decorator_app import Layer
 
 _logger = logging.getLogger(__name__)
 
