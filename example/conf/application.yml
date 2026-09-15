@@ -1,17 +1,12 @@
 ---
-models.app:
-  ycappuccino_endpoints_storage: true
-  ycappuccino_service_comm_storage: true
+name: library
+bundle_prefix:
+  - ycappuccino.storage
+  - ycappuccino.endpoints_storage
+  - library
 layers:
-  ycappuccino_endpoints_storage:
+  ycappuccino_storage_memory:
     active: true
-  ycappuccino_service_comm:
-    active: true
-    host: localhost
-    port: 0
-    scheme: http
-  ycappuccino_service_comm_storage:
-    active: true
-name: endpoint_crud
-bundle_prefix: ycappuccino
-
+config:
+  http_server:
+    active: false
