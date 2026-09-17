@@ -10,6 +10,7 @@ from ycappuccino.api.endpoints_storage import (
     InvalidRequest,
     NotFound,
 )
+from ycappuccino.api.models import Model
 from ycappuccino.api.storage import IItemManager, IManager
 from ycappuccino.endpoints_storage import params as p
 from ycappuccino.endpoints_storage.access import Access
@@ -21,17 +22,19 @@ ALL_FIELDS = {"content": PRIVATE_FIELDS}
 
 class Drafts(IDrafts):
 
-    def __init__(self, items: IItemManager, manager: IManager, authorizations: list[IAuthorization]):
+    def __init__(self, items: IItemManager, manager: IManager, authorizations: list[IAuthorization]) -> None:
         self._manager = manager
         self._access = Access(items, authorizations)
 
-    async def start(self):
+    async def start(self) -> None:
         pass
 
-    async def stop(self):
+    async def stop(self) -> None:
         pass
 
-    async def get_one(self, item_id, id, draft, params=None, subject=None):
+    async def get_one(
+        self, item_id: str, id: str, draft: str, params: dict | None = None, subject: dict | None = None
+    ) -> dict:
         item = await self._access.check_read(item_id, params, subject)
         _check(item, id, draft)
         with p.invalid_request():
@@ -42,7 +45,9 @@ class Drafts(IDrafts):
             raise NotFound(f"{item_id} {id} not found")
         return _result(model, item, private_fields=True)
 
-    async def get_many(self, item_id, draft, params=None, subject=None):
+    async def get_many(
+        self, item_id: str, draft: str, params: dict | None = None, subject: dict | None = None
+    ) -> dict:
         item = await self._access.check_read(item_id, params, subject)
         _check_draftable(item)
         _check_name(draft)
@@ -58,7 +63,9 @@ class Drafts(IDrafts):
             total = await self._manager.count(item_id, scoped, subject)
         return {"items": [_result(model, item, private_fields=True) for model in models], "total": total}
 
-    async def save(self, item_id, id, draft, fields, subject=None):
+    async def save(
+        self, item_id: str, id: str, draft: str, fields: dict, subject: dict | None = None
+    ) -> dict:
         item = await self._access.check(item_id, WRITE, subject)
         _check(item, id, draft)
         fields = p.check_fields(fields, ("_id",) + p.DRAFT_FIELDS)
@@ -74,7 +81,7 @@ class Drafts(IDrafts):
             model = await self._manager.up_sert(item_id, draft_id, fields, subject)
         return _result(model, item, private_fields=False)
 
-    async def publish(self, item_id, id, draft, subject=None):
+    async def publish(self, item_id: str, id: str, draft: str, subject: dict | None = None) -> dict:
         item = await self._access.check(item_id, WRITE, subject)
         _check(item, id, draft)
         draft_id = _draft_id(id, draft)
@@ -86,7 +93,7 @@ class Drafts(IDrafts):
             await self._manager.delete(item_id, draft_id, subject)
         return _result(model, item, private_fields=False)
 
-    async def discard(self, item_id, id, draft, subject=None):
+    async def discard(self, item_id: str, id: str, draft: str, subject: dict | None = None) -> None:
         item = await self._access.check(item_id, WRITE, subject)
         _check(item, id, draft)
         draft_id = _draft_id(id, draft)
@@ -95,27 +102,27 @@ class Drafts(IDrafts):
         await self._manager.delete(item_id, draft_id, subject)
 
 
-def _draft_id(id, draft) -> str:
+def _draft_id(id: str, draft: str) -> str:
     return f"{id}{p.DRAFT_SEPARATOR}{draft}"
 
 
-def _check(item, id, draft) -> None:
+def _check(item: dict, id: str, draft: str) -> None:
     _check_draftable(item)
     p.check_id(id)
     _check_name(draft)
 
 
-def _check_draftable(item) -> None:
+def _check_draftable(item: dict) -> None:
     if item.get("multipart"):
         raise InvalidRequest(f"item {item['id']} is multipart: it has no drafts")
 
 
-def _check_name(draft) -> None:
+def _check_name(draft: str) -> None:
     if not isinstance(draft, str) or not draft or p.DRAFT_SEPARATOR in draft:
         raise InvalidRequest(f"invalid draft name {draft!r}")
 
 
-def _result(model, item, private_fields) -> dict:
+def _result(model: Model, item: dict, private_fields: bool) -> dict:
     """document of the model; a draft version gets the id of its original and its draft name"""
     document = p.to_dict(model, item, private_fields)
     id, separator, draft = document["_id"].rpartition(p.DRAFT_SEPARATOR)

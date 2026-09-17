@@ -5,8 +5,11 @@ Helpers shared by the services: filters, ids and fields checks, conversion of er
 import contextlib
 import copy
 import json
+from typing import Any, Iterator
 
 from ycappuccino.api.endpoints_storage import InvalidRequest
+from ycappuccino.api.models import Model
+from ycappuccino.api.storage import IManager
 
 DRAFT_SEPARATOR = "~"
 DRAFT_FIELDS = ("_draft", "_draft_of")
@@ -16,7 +19,7 @@ PAGE = 1000
 
 
 @contextlib.contextmanager
-def invalid_request():
+def invalid_request() -> Iterator[None]:
     """turn a ValueError (invalid JSON, integer or expand) into InvalidRequest"""
     try:
         yield
@@ -24,7 +27,7 @@ def invalid_request():
         raise InvalidRequest(str(error)) from error
 
 
-def parse_filter(value) -> dict:
+def parse_filter(value: Any) -> dict:
     if value is None or value == "":
         return {}
     if isinstance(value, str):
@@ -35,7 +38,7 @@ def parse_filter(value) -> dict:
     return value
 
 
-def with_condition(params, condition) -> dict:
+def with_condition(params: dict | None, condition: dict) -> dict:
     """copy of params whose filter also requires the condition"""
     params = dict(params or {})
     user_filter = copy.deepcopy(parse_filter(params.get("filter")))
@@ -44,13 +47,13 @@ def with_condition(params, condition) -> dict:
     return params
 
 
-def check_id(id) -> str:
+def check_id(id: Any) -> str:
     if not isinstance(id, str) or not id or DRAFT_SEPARATOR in id:
         raise InvalidRequest(f"invalid id {id!r}")
     return id
 
 
-def check_fields(fields, forbidden) -> dict:
+def check_fields(fields: Any, forbidden: tuple) -> dict:
     if not isinstance(fields, dict):
         raise InvalidRequest("fields must be a JSON object")
     for name in forbidden:
@@ -59,7 +62,7 @@ def check_fields(fields, forbidden) -> dict:
     return dict(fields)
 
 
-def to_dict(model, item, private_fields=False) -> dict:
+def to_dict(model: Model, item: dict, private_fields: bool = False) -> dict:
     """copy of the storage model of the model, without the private properties of the item"""
     document = copy.deepcopy(model.get_storage_model())
     if not private_fields:
@@ -68,7 +71,7 @@ def to_dict(model, item, private_fields=False) -> dict:
     return document
 
 
-def to_fields(document) -> dict:
+def to_fields(document: dict) -> dict:
     """fields to write a read document again: without _id, references flattened to their id"""
     fields = {}
     for name, value in document.items():
@@ -80,7 +83,7 @@ def to_fields(document) -> dict:
     return fields
 
 
-async def all_ids(manager, item_id, filter, subject) -> list:
+async def all_ids(manager: IManager, item_id: str, filter: dict, subject: dict | None) -> list:
     """ids of all the documents of the item matching the filter"""
     ids = []
     offset = 0

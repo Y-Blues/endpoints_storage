@@ -10,9 +10,11 @@ from ycappuccino.api.endpoints_storage import (
     READ,
     WRITE,
     Forbidden,
+    IAuthorization,
     NotAuthenticated,
     NotFound,
 )
+from ycappuccino.api.storage import IItemManager
 from ycappuccino.endpoints_storage.params import invalid_request
 from ycappuccino.storage.query import PRIVATE_FIELDS, parse_expand
 
@@ -22,11 +24,11 @@ _logger = logging.getLogger(__name__)
 class Access(object):
     """checks of a service; authorizations is the live list injected by the core"""
 
-    def __init__(self, items, authorizations):
+    def __init__(self, items: IItemManager, authorizations: list[IAuthorization]) -> None:
         self._items = items
         self._authorizations = authorizations
 
-    def item(self, item_id) -> dict:
+    def item(self, item_id: str) -> dict:
         try:
             item = self._items.get_item(item_id)
         except KeyError:
@@ -35,7 +37,7 @@ class Access(object):
             raise NotFound(f"abstract item {item_id}")
         return item
 
-    async def check(self, item_id, action, subject) -> dict:
+    async def check(self, item_id: str, action: str, subject: dict | None) -> dict:
         item = self.item(item_id)
         if action in (WRITE, DELETE) and not item.get("isWritable", True):
             raise Forbidden(f"item {item_id} is read-only")
@@ -51,7 +53,7 @@ class Access(object):
             raise Forbidden(f"{action} on {item_id} is not authorized")
         return item
 
-    async def check_read(self, item_id, params, subject) -> dict:
+    async def check_read(self, item_id: str, params: dict | None, subject: dict | None) -> dict:
         item = await self.check(item_id, READ, subject)
         params = params or {}
         if PRIVATE_FIELDS in str(params.get("content") or ""):
@@ -64,7 +66,7 @@ class Access(object):
         return item
 
 
-def _is_secured(item, action) -> bool:
+def _is_secured(item: dict, action: str) -> bool:
     if action == PRIVATE:
         return True
     if action == READ:
